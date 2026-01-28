@@ -1,0 +1,7 @@
+{
+  "name": "Career Alignment",
+  "description": "Stop chasing JDs. Start with your professional DNA. Map your unique strengths to the roles that actually fit you.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

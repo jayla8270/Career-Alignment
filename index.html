@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Alignment | High-Stakes Resume Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fcfcfc;
+        overflow-x: hidden;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(229, 231, 235, 1);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Resume Specific Rendering Styles */
+      .resume-content h1 { 
+        font-size: 1.4rem; 
+        font-weight: 900; 
+        border-bottom: 2.5px solid #000; 
+        margin-bottom: 0.75rem; 
+        margin-top: 1.5rem; 
+        text-transform: uppercase; 
+        letter-spacing: -0.02em;
+        page-break-after: avoid;
+      }
+      .resume-content h2 { 
+        font-size: 1.05rem; 
+        font-weight: 800; 
+        margin-top: 1rem; 
+        margin-bottom: 0.35rem; 
+        color: #111;
+      }
+      .resume-content p { margin-bottom: 0.4rem; line-height: 1.5; color: #333; }
+      .resume-content ul { list-style-type: disc; margin-left: 1.25rem; margin-bottom: 0.75rem; }
+      .resume-content li { margin-bottom: 0.25rem; }
+      .resume-content strong { font-weight: 700; color: #000; }
+      
+      /* Mapping tags style */
+      .match-tag {
+        display: inline-block;
+        background: #f0f1f3;
+        color: #6366f1;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.35rem;
+        border-radius: 3px;
+        margin-left: 0.4rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        border: 1px solid #e2e4e9;
+        vertical-align: middle;
+      }
+
+      /* Container for A4 layout on screen and print */
+      .resume-container {
+        width: 210mm;
+        max-width: 100%;
+        margin: 0 auto;
+        background: white;
+        padding: 20mm; /* Extra padding for screen viewing */
+        min-height: 297mm;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      @media print {
+        @page {
+          size: A4;
+          margin: 15mm; /* Professional 15mm side margin */
+        }
+        body {
+          background-color: white !important;
+          margin: 0;
+          padding: 0;
+        }
+        header, footer, .print-hide, .step-indicator-container {
+          display: none !important;
+        }
+        main {
+          padding: 0 !important;
+          margin: 0 !important;
+          max-width: none !important;
+          width: 100% !important;
+        }
+        .resume-container {
+          box-shadow: none !important;
+          border: none !important;
+          border-radius: 0 !important;
+          padding: 0 !important; /* Page margin handles this */
+          width: 100% !important;
+          max-width: none !important;
+          margin: 0 !important;
+        }
+        .resume-content h1 {
+          page-break-before: always;
+        }
+        .resume-content h1:first-child {
+          page-break-before: auto;
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "docx": "https://esm.sh/docx@^9.1.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
