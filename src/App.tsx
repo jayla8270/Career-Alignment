@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Step, StructuredExperience, Diagnosis, ResumeData, FitCheckResult, Language } from './types.ts';
-import { StepIndicator } from './components/StepIndicator.tsx';
-import * as aiService from './services/geminiService.ts';
+import { Step, StructuredExperience, Diagnosis, ResumeData, FitCheckResult, Language } from './types';
+import { StepIndicator } from './components/StepIndicator';
+import * as aiService from './services/geminiService';
 import { GoogleGenAI, Modality } from '@google/genai';
 import * as docx from 'docx';
 
