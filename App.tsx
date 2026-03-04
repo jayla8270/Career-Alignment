@@ -87,7 +87,8 @@ export default function App() {
           scriptProcessor.connect(audioContextInRef.current!.destination);
         },
         onmessage: async (message) => {
-          const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+          const parts = message.serverContent?.modelTurn?.parts;
+          const base64Audio = parts?.[0]?.inlineData?.data;
           if (base64Audio && audioContextOutRef.current) {
             nextStartTimeRef.current = Math.max(nextStartTimeRef.current, audioContextOutRef.current.currentTime);
             const buffer = await decodeAudioData(decode(base64Audio), audioContextOutRef.current, 24000, 1);
