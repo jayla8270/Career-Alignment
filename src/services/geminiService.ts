@@ -2,15 +2,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { StructuredExperience, Diagnosis, ResumeData, FitCheckResult, Language } from "../types.ts";
 
-async function callAI(prompt: string, systemPrompt?: string) {
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, systemPrompt }),
-  });
-  const data = await response.json();
-  return data.text;
-}
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const MODEL_NAME = "gemini-3-flash-preview";
 
 const SYSTEM_PROMPT = `
 ROLE & OBJECTIVE:
